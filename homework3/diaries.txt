@@ -1,0 +1,4 @@
+Dear Diary,
+Today I learned about file handling in Python! 
+It's amazing how I can create and store text using code. 
+Excited to learn more tomorrow! 
