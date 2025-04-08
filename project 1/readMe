@@ -1,0 +1,38 @@
+Sorting Pro/Con List:
+
+Sorting method
+Pros 
+Cons 
+MergeSort 
+Performance is consistent 
+Has a time complexity of O(n log n)
+Efficient in large datasets 
+Sorting is stable 
+Sorting algorithm is stable
+Can be used in parallel structures
+Efficient for external sorting 
+Space complexity
+The O(n) needs additional space for temporary arrays during merging
+Not an in-place algorithm
+Not as efficient for smaller datasets
+Heavily relies on recursion 
+Can lead to recursive overhead
+Implementation of the method is more complex 
+Quick Sort 
+Auxiliary space 
+Does not require much space
+Worst cases
+Some methods can be avoided by using randomized quick sort
+Reference locality has a good location of cache and is therefore fast
+Not a strong case time complexity
+Has a time complexity of O(n^2)
+Weaker pivot selection can lead to the O(n^2)
+Isn’t a strong sorting algorithm
+The recursion depth can be O(n) 
+Can lead to stack overflow for larger datasets
+Not as efficient for smaller datasets
+
+
+We chose to implement MergeSort because it was more efficient to use over the quick sort as it was easier to code. Also, quick sort wouldn’t have worked as well compared to merge sort in our code.
+
+we split the work equally 
