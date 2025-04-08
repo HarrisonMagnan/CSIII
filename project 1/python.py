@@ -36,13 +36,15 @@ SECRET_ANSWERS = {
     "yoda": "Do or do not, there is no try. But you, my young padawan, passed the quiz!"
 }
 
+#both
 # Ensure the CSV file exists with headers
 def initialize_csv():
     if not os.path.exists(CSV_FILE):
         with open(CSV_FILE, "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(["ID", "First Name", "Last Name", "Grade", "Email", "Phone", "Date of Birth", "Address", "History", "English", "Math", "Science", "GPA"])
-            
+ 
+#both            
 # Function to adjust grades based on quiz performance
 def adjust_grade(grade, correct):
     if grade not in GRADE_SIGNS:
@@ -54,6 +56,7 @@ def adjust_grade(grade, correct):
         return GRADE_SIGNS[index + 1]  # Move down a grade
     return grade
 
+#both
 # Quiz function
 def quiz_game():
     student_id = input("Enter Student ID to take the quiz: ").strip()
@@ -128,7 +131,8 @@ def quiz_game():
         writer.writerows(data)
     
     print("Quiz completed! Your grades have been updated.")
-    
+
+#both   
 def secret_quiz_game():
     student_id = input("Enter Student ID to take the secret quiz: ").strip()
     data = read_csv()  # Read student data
@@ -183,12 +187,14 @@ def secret_quiz_game():
 
     print("Secret quiz completed and grades updated!")
 
+#both
 # Read data from CSV file
 def read_csv():
     with open(CSV_FILE, "r") as file:
         reader = csv.DictReader(file)
         return list(reader)
-    
+ 
+#both    
 # Calculate GPA based on letter grades
 def calculate_gpa(grades):
     total = 0
@@ -197,24 +203,29 @@ def calculate_gpa(grades):
             total += GPA_SCALE[grade.upper()]
     return round(total / len(grades), 2)
 
+#both
 # function to validate phone number
 def validate_phone_number(phone):
     return phone.isdigit() and len(phone) == 10
 
+#both
 # function to validate email format
 def validate_email(email):
     # Basic email validation with a regular expression
     email_regex = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
     return re.match(email_regex, email) is not None
 
+#both
 # function to validate date of birth format
 def validate_dob(dob): # 
     dob_regex = r"\d{2}/\d{2}/\d{4}"
     return re.match(dob_regex, dob) is not None
 
+#both
 def validate_grade(grade):
     return grade.upper() in GPA_SCALE
 
+#both
 # Create a new student record
 def create_student():
     data = read_csv()
@@ -292,7 +303,8 @@ def create_student():
         writer.writerow([student_id, first_name, last_name, grade, email, phone, dob, address, history, english, math, science, gpa])
     print("Student added successfully.")
     print(f"students ID is: {student_id}\n")
-        
+
+#both        
 # View all students and their IDs
 def view_students():
     data = read_csv()
@@ -326,6 +338,7 @@ def view_students():
     except (ValueError, IndexError):
         print("Invalid selection. Please choose a valid number.")
 
+#both
 # Read a student record by ID
 def read_student():
     student_id = input("Enter Student ID to read: ").strip()
@@ -336,6 +349,7 @@ def read_student():
             return
     print("Student not found.")
 
+#both
 # Update a student record
 def update_student():
     student_id = input("Enter Student ID to update: ").strip()
@@ -415,6 +429,8 @@ def update_student():
                 
                 print(f"Class {new_class} with grade {new_grade} added successfully.")
                 print(f"Updated GPA: {gpa}")
+                print(f"\n{student['First Name'].title()} {student['Last Name'].title()} has been updated successfully. Feature updated: {feature.title()}")
+
                 return
             
             # Handle normal text updates (like First Name, Last Name, etc.)
@@ -440,11 +456,13 @@ def update_student():
                 writer.writeheader()
                 writer.writerows(data)
             
-            print("Student updated successfully!")
+            print(f"\n{student['First Name'].title()} {student['Last Name'].title()} has been updated successfully. Feature updated: {feature.title()}")
+
             return
     
     print("Student not found.")
 
+#both
 # Delete a student record
 def delete_student():
     student_id = input("Enter Student ID to delete: ").strip()
@@ -463,6 +481,7 @@ def delete_student():
     
     print("Student deleted successfully!")
 
+#both
 # Binary Search for student by ID or Full Name
 def binary_search(data, target, key):
     data = sorted(data, key=lambda x: x[key])
@@ -479,55 +498,52 @@ def binary_search(data, target, key):
 
     return "Student not found"
 
-# Search student by ID or Full Name
+#both
 def search_student():
     data = read_csv()
+    search_query = input("Enter First Name, Last Name, Full Name, Email, or Student ID to search: ").strip().lower()
 
-    # Get input from user
-    search_query = input("Enter First Name, Last Name, Full Name, or Student ID to search: ").strip().lower()
-
-    # Search by Student ID first
-    student = next((s for s in data if s['ID'] == search_query), None)
-    if student:
+    #  searching by ID using binary search
+    student = binary_search(data, search_query, "ID")
+    if student != "Student not found":
         print(student)
         return
 
-    # Search by First or Last Name
-    matches = [s for s in data if search_query in [s['First Name'].lower(), s['Last Name'].lower()]]
-    
-    if len(matches) == 0:
+    #  searching by Email using binary search
+    for s in data:
+        s["Email"] = s["Email"].lower()  # normalize for binary search
+    student = binary_search(data, search_query, "Email")
+    if student != "Student not found":
+        print(student)
+        return
+
+    #  First Name or Last Name
+    matches = [s for s in data if search_query == s['First Name'].lower() or search_query == s['Last Name'].lower()]
+
+    if not matches:
         print("Student not found.")
         return
 
-    # If only one match found, show it
     if len(matches) == 1:
         print(matches[0])
         return
 
-    # If multiple matches, ask for full name
     print("Multiple students found with the same first or last name. Please provide the full name.")
     full_name_query = input("Enter Full Name (First Last): ").strip().lower()
-    full_name_matches = [s for s in matches if f"{s['First Name'].lower()} {s['Last Name'].lower()}" == full_name_query]
 
-    if len(full_name_matches) == 0:
-        print("Full name did not match any records.")
-        return
+    # Add full name field temporarily for binary search
+    for s in matches:
+        s["Full Name"] = f"{s['First Name'].lower()} {s['Last Name'].lower()}"
 
-    # If one full name match found, show it
-    if len(full_name_matches) == 1:
-        print(full_name_matches[0])
-        return
-
-    # If multiple full name matches, ask for ID
-    print("Multiple students have the same full name. Please provide the Student ID.")
-    student_id_query = input("Enter Student ID: ").strip()
-    student = next((s for s in full_name_matches if s['ID'] == student_id_query), None)
-
-    if student:
+    student = binary_search(matches, full_name_query, "Full Name")
+    if student != "Student not found":
         print(student)
-    else:
-        print("Student ID not found for the given name.")
+        return
 
+    print("Full name did not match any records.")
+
+
+#both
 # Sort students by chosen key
 def merge_sort(data, key):
     if len(data) <= 1:
@@ -537,6 +553,7 @@ def merge_sort(data, key):
     right = merge_sort(data[mid:], key)
     return merge(left, right, key)
 
+#both
 def merge(left, right, key):
     result = []
     while left and right:
@@ -548,6 +565,7 @@ def merge(left, right, key):
     result.extend(right)
     return result
 
+#both
 # Sort students by GPA instead of letter grade
 def sort_students():
     data = read_csv()
@@ -563,15 +581,20 @@ def sort_students():
         return
 
     key = key_mapping[key_input]
+
+    # Handle GPA as float during sorting
     if key == "GPA":
-        sorted_data = sorted(data, key=lambda x: float(x["GPA"]), reverse=True)
-    else:
-        sorted_data = sorted(data, key=lambda x: x[key])
+        for student in data:
+            student["GPA"] = float(student["GPA"])
+    
+    sorted_data = merge_sort(data, key)
 
     print("\nSorted Students:")
     for student in sorted_data:
         print(student)
 
+
+#both
 # CLI Loop
 def main():
     initialize_csv()
