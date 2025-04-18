@@ -1,0 +1,16 @@
+Student ID,Study Hours,Fixed Schedule,Productive Time,Notes Review,Focus (1-10),Preferred Method,Uses Apps,Breaks,Prep Days,GPA
+001,5,Yes,Evening,Often,6,Flashcards,Yes,2,3,2.8
+002,0,No,Late Night,Rarely,3,Watching Videos,Yes,5,1,1.2
+003,20,Yes,Afternoon,Always,10,Practice Problems,Yes,0,9,4.0
+004,7,No,Morning,Sometimes,5,Group Study,No,3,2,2.5
+005,16,Yes,Evening,Always,9,Reading,Yes,1,8,3.7
+006,1,No,Evening,Never,2,Flashcards,No,6,0,1.0
+007,8,Yes,Morning,Often,7,Practice Problems,Yes,2,4,3.1
+008,2,Yes,Afternoon,Rarely,3,Reading,Yes,5,1,1.6
+009,18,No,Late Night,Always,10,Watching Videos,No,0,10,3.9
+010,6,Yes,Evening,Often,8,Flashcards,Yes,2,3,3.2
+011,3,No,Morning,Sometimes,4,Practice Problems,Yes,4,2,2.3
+012,22,Yes,Afternoon,Always,10,Group Study,Yes,0,9,4.0
+013,0,No,Late Night,Sometimes,2,Reading,No,6,0,1.4
+014,9,No,Evening,Rarely,5,Watching Videos,Yes,3,2,2.6
+015,11,Yes,Afternoon,Rarely,8,Practice Problems,No,1,0,3.4
