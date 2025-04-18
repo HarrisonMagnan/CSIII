@@ -1,6 +1,6 @@
 #how to start streamlit (put in terminal) streamlit run project2.py
-#Local URL: http://localhost:8502
-#Network URL: http://10.10.170.91:8502
+#Local URL: http://localhost:8503
+#Network URL: http://10.10.170.91:8503
 
 import streamlit as st
 import pandas as pd
@@ -25,7 +25,7 @@ st.markdown(
         right: 10px;
         z-index: 9999;
         width: 320px;
-        height: 180px;
+        height: 210px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         border-radius: 8px;
         overflow: hidden;
@@ -33,7 +33,7 @@ st.markdown(
     </style>
 
     <div class="video-container">
-        <iframe width="320" height="180" src="https://www.youtube.com/embed/WW9CoY7xf7s?autoplay=1&mute=1&loop=1&playlist=WW9CoY7xf7s"
+        <iframe width="320" height="210" src="https://www.youtube.com/embed/WW9CoY7xf7s?autoplay=1&mute=1&loop=1&playlist=WW9CoY7xf7s"
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     """,
