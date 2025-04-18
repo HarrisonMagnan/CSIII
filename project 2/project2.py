@@ -1,4 +1,4 @@
-#how to start streamlit (put in terminal) streamlit run example.py
+#how to start streamlit (put in terminal) streamlit run project2.py
 #Local URL: http://localhost:8502
 #Network URL: http://10.10.170.91:8502
 
