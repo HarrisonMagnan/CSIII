@@ -1,6 +1,7 @@
 #how to start streamlit (put in terminal) streamlit run project2.py
-#  Local URL: http://localhost:8501
-#  Network URL: http://10.10.170.91:8501
+
+# Local URL: http://localhost:8502
+# Network URL: http://10.10.170.91:8502
 
 import streamlit as st
 import pandas as pd
@@ -25,6 +26,7 @@ Welcome to the Ultimate Study Tracker! Here's what you can do with this app:
 - **Delete a Student** from the dataset if needed.
 - **Analyze the Data** using built-in tools to find the max GPA, lowest study hours, or average focus levels.
 - **Visualize Trends** in GPA and study time using charts and interactive graphs.
+- **Enjoy Zen Playing deadcells in the top right corner.**
 
 
 > 🎯 Use this tool to better understand how study habits relate to academic performance!
@@ -129,11 +131,7 @@ if page == "Home":
     # Header and intro
     st.markdown("<div class='title'>✨📖 Welcome to the Ultimate Study Tracker!</div>", unsafe_allow_html=True)
     st.markdown("#### 👨‍💻 Created by: Benjamin Jeong, Harrison Magnan, Eric Gomez, Zen Ze Chen")
-
-    # App usage instructions (you can expand this section)
-    st.markdown("## 🧭 How to Use This App")
-    st.markdown("""...""")
-
+    
     # ------- Add Student Form -------
     st.subheader("➕ Add a New Student")
     with st.form("add_student"):
