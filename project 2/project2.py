@@ -13,6 +13,27 @@ import altair as alt
 st.sidebar.title("📂 Navigation")
 page = st.sidebar.selectbox("Choose a page", ["Home", "Analyze"])
 
+# ---------- App Instructions & Authors ---------- 
+st.markdown("## 🧭 How to Use This App")
+st.markdown("""
+Welcome to the Ultimate Study Tracker! Here's what you can do with this app:
+
+
+- **Add a New Student** with their study habits, GPA, and preferences.
+- **View All Students** in a sortable and scrollable table.
+- **Update a Student's Data** to reflect changes in study behavior or performance.
+- **Delete a Student** from the dataset if needed.
+- **Analyze the Data** using built-in tools to find the max GPA, lowest study hours, or average focus levels.
+- **Visualize Trends** in GPA and study time using charts and interactive graphs.
+
+
+> 🎯 Use this tool to better understand how study habits relate to academic performance!
+""")
+
+
+st.markdown("#### 👨‍💻 Created by: Benjamin Jeong, Harrison Magnan, Eric Gomez, Zen Ze Chen")
+
+
 # ---------- Custom Page Styling ----------
 # CSS injected to customize font, background, and button appearance
 # ---------- Floating YouTube Video ----------  
