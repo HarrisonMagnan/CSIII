@@ -1,6 +1,6 @@
 #how to start streamlit (put in terminal) streamlit run project2.py
-#Local URL: http://localhost:8503
-#Network URL: http://10.10.170.91:8503
+#  Local URL: http://localhost:8501
+#  Network URL: http://10.10.170.91:8501
 
 import streamlit as st
 import pandas as pd
@@ -74,7 +74,7 @@ df = load_data()
 # Represents a student with their study habits and GPA
 class Student:
     def __init__(self, student_id, study_hours, fixed_schedule, productive_time,
-                 notes_review, focus, method, uses_apps, breaks, prep_days, gpa):
+                 notes_review, focus, method, gpa):
         self.student_id = student_id
         self.study_hours = study_hours
         self.fixed_schedule = fixed_schedule
@@ -82,9 +82,9 @@ class Student:
         self.notes_review = notes_review
         self.focus = focus
         self.method = method
-        self.uses_apps = uses_apps
-        self.breaks = breaks
-        self.prep_days = prep_days
+        #self.uses_apps = uses_apps
+        #self.breaks = breaks
+        #self.prep_days = prep_days
         self.gpa = gpa
 
     # Converts student data to a dictionary (used for adding to the DataFrame)
@@ -97,9 +97,9 @@ class Student:
             "Notes Review": self.notes_review,
             "Focus (1-10)": self.focus,
             "Preferred Method": self.method,
-            "Uses Apps": self.uses_apps,
-            "Breaks": self.breaks,
-            "Prep Days": self.prep_days,
+            #"Uses Apps": self.uses_apps,
+            #"Breaks": self.breaks,
+            #"Prep Days": self.prep_days,
             "GPA": self.gpa
         }
 
@@ -124,9 +124,9 @@ if page == "Home":
         notes_review = st.selectbox("Notes Review", ["Always", "Often", "Sometimes", "Rarely", "Never"])
         focus = st.slider("Focus (1-10)", 1, 10)
         method = st.selectbox("Preferred Method", ["Flashcards", "Practice Problems", "Watching Videos", "Reading", "Group Study"])
-        uses_apps = st.selectbox("Uses Apps", ["Yes", "No"])
-        breaks = st.number_input("Breaks", 0, 10)
-        prep_days = st.number_input("Prep Days", 0, 30)
+        #uses_apps = st.selectbox("Uses Apps", ["Yes", "No"])
+        #breaks = st.number_input("Breaks", 0, 10)
+        #prep_days = st.number_input("Prep Days", 0, 30)
         gpa = st.number_input("GPA", 0.0, 4.0, step=0.1)
         submitted = st.form_submit_button("Add Student")
 
@@ -158,9 +158,9 @@ if page == "Home":
             notes_review = st.selectbox("Notes Review", ["Always", "Often", "Sometimes", "Rarely", "Never"], index=["Always", "Often", "Sometimes", "Rarely", "Never"].index(student_data["Notes Review"]))
             focus = st.slider("Focus (1-10)", 1, 10, value=int(student_data["Focus (1-10)"]))
             method = st.selectbox("Preferred Method", ["Flashcards", "Practice Problems", "Watching Videos", "Reading", "Group Study"], index=["Flashcards", "Practice Problems", "Watching Videos", "Reading", "Group Study"].index(student_data["Preferred Method"]))
-            uses_apps = st.selectbox("Uses Apps", ["Yes", "No"], index=["Yes", "No"].index(student_data["Uses Apps"]))
-            breaks = st.number_input("Breaks", 0, 10, value=int(student_data["Breaks"]))
-            prep_days = st.number_input("Prep Days", 0, 30, value=int(student_data["Prep Days"]))
+            #uses_apps = st.selectbox("Uses Apps", ["Yes", "No"], index=["Yes", "No"].index(student_data["Uses Apps"]))
+            #breaks = st.number_input("Breaks", 0, 10, value=int(student_data["Breaks"]))
+            #prep_days = st.number_input("Prep Days", 0, 30, value=int(student_data["Prep Days"]))
             gpa = st.number_input("GPA", 0.0, 4.0, step=0.1, value=float(student_data["GPA"]))
             updated = st.form_submit_button("Update Student")
 
@@ -168,9 +168,9 @@ if page == "Home":
                 # Update the DataFrame with new values
                 df.loc[df["Student ID"] == update_id, [
                     "Study Hours", "Fixed Schedule", "Productive Time", "Notes Review",
-                    "Focus (1-10)", "Preferred Method", "Uses Apps", "Breaks", "Prep Days", "GPA"
+                    "Focus (1-10)", "Preferred Method", "GPA"
                 ]] = [study_hours, fixed_schedule, productive_time, notes_review,
-                      focus, method, uses_apps, breaks, prep_days, gpa]
+                      focus, method, gpa]
                 save_data(df)
                 st.success(f"✅ Student {update_id} updated!")
 
